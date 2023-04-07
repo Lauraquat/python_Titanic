@@ -24,8 +24,8 @@ def index(request):
             # Récupérer les données du formulaire
             age = form.cleaned_data['age']
             embarquement = form.cleaned_data['embarquement']
-            sexe = form.cleaned_data['sex']
-            classe = form.cleaned_data['class']
+            sexe = form.cleaned_data['sexe']
+            classe = form.cleaned_data['classe']
 
             # Envoyer les données à l'API FastAPI
             data = {'age': age, 'embarquement': embarquement, 'sexe': sexe, 'classe': classe  }
