@@ -11,21 +11,22 @@ model2.load_model("modelTitanic.json")
 app = FastAPI()
 
 
-if( Pclass == 1):
-    Fare == 84.15
-elif( Pclass == 2):
-    Fare == 20.66
-elif( Pclass == 3):
-    Fare == 13.67
-
-
 # On créé une route pour faire des prédictions
-@app.get("/predict")
-def predict():
+@app.post("/predict")
+def predict(age, embarquement, sexe, classe, tarif):
+
+    # On définit un tarif moyen pour chaque classe
+    if( classe == 1):
+        tarif == 84.15
+    elif( classe == 2):
+        tarif == 20.66
+    elif( classe == 3):
+        tarif == 13.67
+
     # On met les données dans un tableau NumPy
-    data = pd.DataFrame([[Age, Embarked, Sex, Pclass, Fare]], columns = ["Age", "Embarked", "Sex", "Pclass", "Fare"])
+    data = pd.DataFrame([[int(age), int(embarquement), int(sexe), int(classe), int(tarif)]], columns = ["Age", "Embarked", "Sex", "Pclass", "Fare"])
    
-    # On utilise le DMatrix pour faire la prédiction
+    # On génère la prédiction
     prediction = model2.predict_proba(data)
     print(prediction) 
     
