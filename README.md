@@ -1,7 +1,9 @@
 # python_Titanic
 
-- Lancer le site :  `python ./*nomfichier.py*`
-- Lancer API : `uvicorn main:app --reload`
+- Lancer le site :  cd titanic
+                    python3.9 manage.py runserver
+        
+- Lancer API : `uvicorn main:app --reload --port 8001`
 
 
 # Jupyter notebook
