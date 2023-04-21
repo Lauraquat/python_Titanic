@@ -2,8 +2,11 @@
 
 - Lancer le site :  cd titanic
                     python3.9 manage.py runserver
+                    url site : http://
+                    
                     <!-- pour léa -->
                     py manage.py runserver
+
         
         
 - Lancer API : `uvicorn main:app --reload --port 8001`

@@ -18,6 +18,7 @@ class ContactForm(forms.Form):
     # widget=forms.Textarea)
 
 def index(request):
+    prediction = 0
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
