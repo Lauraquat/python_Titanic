@@ -2,8 +2,8 @@
 
 - Lancer le site :  cd titanic
                     python3.9 manage.py runserver
-                    url site : http://
-                    
+                    url site : http://127.0.0.1:8000/
+
                     <!-- pour léa -->
                     py manage.py runserver
 
