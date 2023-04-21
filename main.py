@@ -2,6 +2,7 @@ from typing import Union
 from fastapi import FastAPI
 import pandas as pd
 import xgboost as xgb
+import numpy as np
 
 # On charge le modèle
 model2 = xgb.XGBClassifier()
@@ -15,20 +16,13 @@ app = FastAPI()
 @app.post("/predict")
 def predict(age, embarquement, sexe, classe, tarif):
 
-    # On définit un tarif moyen pour chaque classe
-    if( classe == 1):
-        tarif == 84.15
-    elif( classe == 2):
-        tarif == 20.66
-    elif( classe == 3):
-        tarif == 13.67
 
     # On met les données dans un tableau NumPy
-    data = pd.DataFrame([[int(age), int(embarquement), int(sexe), int(classe), int(tarif)]], columns = ["Age", "Embarked", "Sex", "Pclass", "Fare"])
+    data = pd.DataFrame([[int(age), int(embarquement), int(sexe), int(classe), float(tarif)]], columns = ["Age", "Embarked", "Sex", "Pclass", "Fare"])
    
     # On génère la prédiction
     prediction = model2.predict_proba(data)
-    print(prediction) 
+    print(data) 
     
     # On retourne la prédiction sous forme de dictionnaire
-    return {"prediction": str(prediction[0])}
+    return str(prediction[0][1]*100)[0:4]+ " %"

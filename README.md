@@ -2,6 +2,9 @@
 
 - Lancer le site :  cd titanic
                     python3.9 manage.py runserver
+                    <!-- pour léa -->
+                    py manage.py runserver
+        
         
 - Lancer API : `uvicorn main:app --reload --port 8001`
                 url: http://127.0.0.1:8001/docs#/default/predict_predict_post

@@ -18,6 +18,7 @@ class ContactForm(forms.Form):
     # widget=forms.Textarea)
 
 def index(request):
+    form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -26,14 +27,26 @@ def index(request):
             embarquement = form.cleaned_data['embarquement']
             sexe = form.cleaned_data['sexe']
             classe = form.cleaned_data['classe']
+            tarif = 0
+            # On définit un tarif moyen pour chaque classe
+            if( classe == '1'):
+                tarif = 84.15
+            elif( classe == '2'):
+                tarif = 20.66
+            elif( classe == '3'):
+                tarif = 13.67
 
             # Envoyer les données à l'API FastAPI
-            data = {'age': age, 'embarquement': embarquement, 'sexe': sexe, 'classe': classe  }
-            response = requests.post('http:/127.0.0.1:8000/main', json=data)
-
+            data = {'age': age, 'embarquement': embarquement, 'sexe': sexe, 'classe': classe, 'tarif': tarif }
+            response = requests.post('http://127.0.0.1:8001/predict?age='+age+'&embarquement='+embarquement+'&sexe='+sexe+'&classe='+classe+'&tarif='+str(tarif), json=data)
+            print(response.json())
+            
+            prediction = response.json()
             # Vérifier la réponse de l'API
 
-    else:
-        form = ContactForm()
+    return render(request, 'index.html', {'form': form, 'prediction': prediction})
 
-    return render(request, 'index.html', {'form': form})
+        
+
+
+

@@ -18,11 +18,15 @@
             {{ form.as_p }}
             <button type="submit">Envoyer</button>
         </form>
-
+        <!-- inserer dans la balise p la valeur retrouné-->
+        <h3 class="result">
+            Vous auriez eu 
+            {% if prediction %}
+                {{ prediction }}
+            {% endif %} de chance de survivre au naufrage du Titanic 
+        </h3>
         <img id="" src="../static/css/titanic.svg" alt="titanic">
     </main>
     <footer>
-        <p>© 1912 - Titanic </p>
-    </footer>
 </body>
 </html>
