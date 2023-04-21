@@ -19,7 +19,6 @@ def predict(age, embarquement, sexe, classe, tarif):
    
     # On génère la prédiction
     prediction = model2.predict_proba(data)
-    print(data) 
     
     # On retourne la prédiction
     return str(prediction[0][1]*100)[0:4]+ " %"
